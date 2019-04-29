@@ -25,6 +25,8 @@ for ii = 1:size(M,1)
    scatter3(M(ii,1),M(ii,2),M(ii,3),centers(ii,:));
    hold on;
 end
+title('看图等待中,按enter键接着运行');
+pause; 
 %% 均值更新
     Mupdated = zeros(size(M));
     Nlabel = zeros(1,nclass);

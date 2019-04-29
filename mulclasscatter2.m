@@ -1,0 +1,19 @@
+function  mulclasscatter2(X)
+%   画出多种类别数据的散点图
+%   X为输入数据，必须为n*3，其中坐标为前两列，类别为第三列,
+%   最多五类，可通过加colors增加支持类别数,类别序号从1开始
+%   by xupengzheng in hit
+ colors = ['or';'ok';'ob';'og';'oy'];
+ Xlabel = X(:,end);
+ C = unique(Xlabel);
+ figure;
+ str_legend=[];
+for ii = 1:length(C)
+   idii = find(Xlabel==ii);
+   scatter(X(idii,1),X(idii,2),colors(ii,:));
+   str_legend=([str_legend;['第' num2str(ii) '类']]);
+   hold on;
+end
+legend(str_legend);
+end
+
