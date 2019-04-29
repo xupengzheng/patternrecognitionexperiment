@@ -12,7 +12,19 @@ while(1)
     for i = 1:nx
         X(i,end) = nearest(X(i,1:end-1),M);
     end
-    Xlabelhistory = [Xlabelhistory,X(:,end)];
+    Xlabel = X(:,end);
+    Xlabelhistory = [Xlabelhistory,Xlabel];
+%% 每次迭代的结果画图
+ close all;
+ colors = ['or';'ok';'ob';'og';'oy'];
+ centers = ['*r';'*k';'*b';'*g';'*y'];
+for ii = 1:size(M,1)
+   idii = find(Xlabel==ii);
+   scatter3(X(idii,1),X(idii,2),X(idii,3),colors(ii,:));
+   hold on;
+   scatter3(M(ii,1),M(ii,2),M(ii,3),centers(ii,:));
+   hold on;
+end
 %% 均值更新
     Mupdated = zeros(size(M));
     Nlabel = zeros(1,nclass);
@@ -23,7 +35,7 @@ while(1)
     for i = 1:nclass
         Mupdated(i,:) = Mupdated(i,:)/Nlabel(i);
     end
-    if isequal(Mupdated,M)
+    if isequal(Mupdated,M)  %判断是否收敛
         break
     end
     M = Mupdated;
@@ -39,6 +51,7 @@ dismin = sum((x-M(1,:)).^2);
 for i = 2:size(M,1)
     if sum((x-M(i,:)).^2)<dismin
         label =i;
+         dismin =  sum((x-M(i,:)).^2);
     end
 end
 end
