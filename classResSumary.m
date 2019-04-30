@@ -1,4 +1,4 @@
-function [acc,Summary,Summaryinrate] = classResSummary(prelabel,truelabel)
+function [acc,Summary,Summaryinrate] = classResSumary(prelabel,truelabel)
 %   对分类的结果进行统计
 %   Summary为分类混淆矩阵
 %   Summaryinrate为比率分类混淆矩阵
